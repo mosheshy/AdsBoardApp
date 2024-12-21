@@ -1,0 +1,42 @@
+.ad-details {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+    .ad-details h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .ad-details p {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+    }
+
+button {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+}
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    button:last-of-type {
+        background-color: #dc3545;
+    }
+
+        button:last-of-type:hover {
+            background-color: #a71d2a;
+        }

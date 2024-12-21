@@ -1,0 +1,47 @@
+<div class="ad-form">
+    <h2>{{ isEditMode ? 'Edit Ad' : 'Create New Ad' }}</h2>
+    <form (ngSubmit)="saveAd()">
+        <div>
+            <label>Title:</label>
+            <input type="text" [(ngModel)]="ad.title" name="title" required title="Title" placeholder="Enter the title" />
+        </div>
+        <div>
+            <label>Description:</label>
+            <textarea [(ngModel)]="ad.description" name="description" title="Description" placeholder="Enter the description"></textarea>
+        </div>
+        <div>
+            <label>Price:</label>
+            <input type="number" [(ngModel)]="ad.price" name="price" title="Price" placeholder="Enter the price" />
+        </div>
+        <div>
+            <label>Category:</label>
+            <input type="text" [(ngModel)]="ad.category" name="category" title="Category" placeholder="Enter the category" />
+        </div>
+       
+            <label>Location:</label>
+            <google-map [height]="'400px'"
+                        [width]="'100%'"
+                        [center]="mapCenter"
+                        [zoom]="12"
+                        (mapClick)="setLocation($event)">
+                <map-marker *ngIf="ad.location"
+                            [position]="ad.location"
+                            [title]="'Selected Location'"></map-marker>
+            </google-map>
+            <div *ngIf="ad.location">
+                <label>Latitude:</label>
+                <input type="number" [(ngModel)]="ad.location.lat" name="lat" />
+                <label>Longitude:</label>
+                <input type="number" [(ngModel)]="ad.location.lng" name="lng" />
+            </div>        
+        <div>
+            <label>createdBy:</label>
+            <input type="text" [(ngModel)]="ad.createdBy" name="createdBy" title="Created By" placeholder="Enter the creator's name" />
+        </div>
+        <div>
+            <label>createdAt:</label>
+            <input type="date" [(ngModel)]="ad.createdAt" name="createdAt" title="Created At" placeholder="Enter the creation date" />
+        </div>
+        <button type="submit">{{ isEditMode ? 'Update' : 'Save' }}</button>
+    </form>
+</div>

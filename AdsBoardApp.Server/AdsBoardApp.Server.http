@@ -1,0 +1,6 @@
+@AdsBoardApp.Server_HostAddress = http://localhost:5182
+
+GET {{AdsBoardApp.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

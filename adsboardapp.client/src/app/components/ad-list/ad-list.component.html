@@ -1,0 +1,83 @@
+<div class="ad-list-container">
+    <h2>Classified Ads</h2>
+
+    <!-- Search and Add New Ad -->
+    <div class="actions">
+        <input type="text" [(ngModel)]="searchQuery" (input)="onSearchChange()" placeholder="Search ads..." />
+
+        <!-- Filter by price -->
+        <div>
+            <label>Price Range:</label>
+            <input type="number" [(ngModel)]="minPrice" placeholder="Min Price" (input)="onSearchChange()" />
+            <input type="number" [(ngModel)]="maxPrice" placeholder="Max Price" (input)="onSearchChange()" />
+        </div>
+
+        <!-- Filter by category -->
+        <div>
+            <label>Category:</label>
+            <select [(ngModel)]="selectedCategory" (change)="onSearchChange()">
+                <option value="">All Categories</option>
+                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+        </div>
+
+        <!-- Filter by location -->
+        <div>
+            <button (click)="filterByCurrentLocation()">Filter by My Location</button>
+        </div>
+
+        <button (click)="createNewAd()" [disabled]="loading">Add New Ad</button>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="loading" class="loading">Loading ads...</div>
+
+    <!-- No Ads Placeholder -->
+    <div *ngIf="!filteredAds.length && !loading">
+        <p>No ads available. Please add a new ad or adjust your search query.</p>
+    </div>
+
+    <!-- Ad Grid -->
+    <mat-grid-list cols="3" rowHeight="1:1" *ngIf="!loading && filteredAds.length > 0">
+        <mat-grid-tile *ngFor="let ad of filteredAds" (click)="goToDetails(ad.id!)" style="cursor: pointer;">
+            <div class="ad-tile">
+                <h3>{{ad.title }}</h3>
+                <p>{{ ad.description }}</p>
+                <p>Price: {{ ad.price }} $</p>
+                <p> {{ad.category}} </p>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+<!--
+
+<div class="ad-list-container">
+    <h2>Classified Ads</h2>
+
+    <div class="actions">
+        <input type="text" [(ngModel)]="searchQuery" (input)="onSearchChange()" placeholder="Search ads..." />
+        <button (click)="createNewAd()" [disabled]="loading">Add New Ad</button>
+    </div>
+
+    <div *ngIf="loading" class="loading">Loading ads...</div>
+
+    <div *ngIf="!filteredAds.length && !loading">
+        <p>No ads available. Please add a new ad or adjust your search query.</p>
+    </div>
+
+    <mat-grid-list cols="3" rowHeight="1:1" *ngIf="!loading && filteredAds.length > 0">
+        <mat-grid-tile *ngFor="let ad of filteredAds" (click)="goToDetails(ad.id!)" style="cursor: pointer;">
+            <div class="ad-tile">
+                <h3>{{ad.title }}</h3>
+                <p>{{ ad.description }}</p>
+                <p>Price: {{ ad.price }} $</p>
+                <p> {{ad.category}} </p>
+
+
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    </div>
+
+-->

@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$adsboardapp-client-primary: mat.define-palette(mat.$indigo-palette);
+$adsboardapp-client-accent: mat.define-palette(mat.$pink-palette);
+$adsboardapp-client-warn: mat.define-palette(mat.$red-palette);
+
+$adsboardapp-client-theme: mat.define-light-theme((
+  color: (
+    primary: $adsboardapp-client-primary,
+    accent: $adsboardapp-client-accent,
+    warn: $adsboardapp-client-warn,
+  )
+));
+
+@include mat.all-component-themes($adsboardapp-client-theme);

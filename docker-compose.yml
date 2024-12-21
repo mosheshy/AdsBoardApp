@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  adsboardapp-client:
+    build:
+      context: ./adsboardapp.client
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    environment:
+      - NODE_ENV=development
+
+  adsboardapp-server:
+    build:
+      context: ./AdsBoardApp.Server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - adsboardapp-client
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
